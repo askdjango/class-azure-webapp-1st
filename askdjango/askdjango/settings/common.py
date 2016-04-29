@@ -120,6 +120,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    join(BASE_DIR, 'askdjango', 'static'),
+]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = join(BASE_DIR, 'media')
