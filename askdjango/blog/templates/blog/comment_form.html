@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    &lt;{{ post.title }}&gt; 댓글쓰기
+                </div>
+                <div class="panel-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <input type="submit" class="btn btn-primary" />
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    <a href="{% url "blog:post_detail" post.pk %}" class="btn btn-default">돌아가기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

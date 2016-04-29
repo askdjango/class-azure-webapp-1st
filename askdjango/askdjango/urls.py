@@ -14,19 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf import settings
-from django.conf.urls import url
+from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.http import HttpResponse
-
-def hello(request):
-    return HttpResponse('''
-        <h1>Hello, <a href="http://facebook.com/askdjango/" target="_blank">AskDjango</a></h1>
-    ''')
+from django.shortcuts import redirect
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$' , hello),
+    url(r'^blog/', include('blog.urls', namespace='blog')),
+    url(r'^$' , lambda r: redirect('blog:index')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

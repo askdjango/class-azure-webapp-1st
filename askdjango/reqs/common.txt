@@ -1,3 +1,4 @@
 pip>=8.1.1
-django==1.9.4
+django==1.9.5
 pillow==3.1.1
+django-bootstrap3

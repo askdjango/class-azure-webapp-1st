@@ -1,0 +1,33 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    {{ post.title }}
+                </div>
+                <div class="panel-body">
+                    <img src="{{ post.photo.url }}" style="max-width: 100%;" />
+                    {{ post.content|linebreaks }}
+                    <hr/>
+                    
+                    <ul>
+                    {% for comment in post.comment_set.all %}
+                        <li>{{ comment.message }}</li>
+                    {% empty %}
+                        <li><a href="{% url "blog:comment_new" post.pk %}">댓글을 써주세요.</a></li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <a href="{% url "blog:index" %}" class="btn btn-default">글목록</a>
+                    <a href="{% url "blog:comment_new" post.pk %}" class="btn btn-primary">댓글쓰기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
